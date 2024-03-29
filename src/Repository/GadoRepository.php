@@ -36,13 +36,12 @@ class GadoRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Gado
-    //    {
-    //        return $this->createQueryBuilder('g')
-    //            ->andWhere('g.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    public function findOneByCode($codigo): ?Gado
+    {
+        return $this->createQueryBuilder('g')
+            ->andWhere('g.codigo = :codigo')
+            ->setParameter('codigo', $codigo)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

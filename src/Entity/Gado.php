@@ -47,6 +47,9 @@ class Gado
     #[ORM\JoinColumn(nullable: false)]
     private ?Fazenda $fazenda = null;
 
+    #[ORM\Column]
+    private ?bool $abate = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +123,18 @@ class Gado
     public function setFazenda(?Fazenda $fazenda): static
     {
         $this->fazenda = $fazenda;
+
+        return $this;
+    }
+
+    public function isAbate(): ?bool
+    {
+        return $this->abate;
+    }
+
+    public function setAbate(bool $abate): static
+    {
+        $this->abate = $abate;
 
         return $this;
     }

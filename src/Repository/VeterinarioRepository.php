@@ -36,13 +36,12 @@ class VeterinarioRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Veterinario
-    //    {
-    //        return $this->createQueryBuilder('v')
-    //            ->andWhere('v.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    public function findOneByCRMV($crmv): ?Veterinario
+    {
+        return $this->createQueryBuilder('v')
+            ->andWhere('v.crmv = :crmv')
+            ->setParameter('crmv', $crmv)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

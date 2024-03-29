@@ -13,6 +13,7 @@
             <td>Peso(Kg)</td>
             <td>Nascimento</td>
             <td>Fazenda</td>
+            <td>Abate</td>
             <td>Ações</td>
         </tr>
     </thead>
@@ -26,8 +27,23 @@
             <td>{{ gado.peso }}</td>
             <td>{{ gado.nascimento|date("d/m/Y") }}</td>
             <td>{{ gado.fazenda.nome }}</td>
+            {% if gado.abate == false %}
+                <td class="bg-success text-center rounded">
+                    Não abatido
+                </td>
+            {% endif %}
+            {% if gado.abate == true %}
+                <td class="bg-danger text-center rounded">
+                    Abatido
+                </td>
+            {% endif %}
             <td>
-                <a href="{{ path('editar_gado', {id: gado.id}) }}" class="btn btn-primary">Editar</a>
+                {% if gado.abate == false %}
+                    <a href="{{ path('editar_gado', {id: gado.id}) }}" class="btn btn-primary">Editar</a>
+                {% endif %}
+                {% if gado.abate == true %}
+                    <a class="btn btn-secondary">Editar</a>    
+                {% endif %}
                 <a href="{{ path('excluir_gado', {id: gado.id}) }}" class="btn btn-primary">Excluir</a>
             </td>
         </tr>
