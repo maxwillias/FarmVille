@@ -6,6 +6,7 @@ use App\Entity\Fazenda;
 use App\Form\FazendaType;
 use App\Repository\FazendaRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,6 +33,11 @@ class FazendaController extends AbstractController {
         if($form->isSubmitted() && $form->isValid()){
             $em->persist($fazenda);
             $em->flush();
+            $this->addFlash(
+                'Sucesso',
+                'Salvo com sucesso!'
+            );
+            return $this->redirectToRoute('index_fazenda');
         }
         
         $data['titulo'] = 'Adicionar nova Fazenda';
@@ -49,6 +55,11 @@ class FazendaController extends AbstractController {
 
         if($form->isSubmitted() && $form->isValid()){
             $em->flush();
+            $this->addFlash(
+                'Sucesso',
+                'Alterações salvas com sucesso!'
+            );
+            return $this->redirectToRoute('index_fazenda');
         }
         
         $data['titulo'] = 'Editar Fazenda';
@@ -62,8 +73,19 @@ class FazendaController extends AbstractController {
         
         $fazenda = $fazendaRepository->find($id);
 
-        $em->remove($fazenda);
-        $em->flush();
+        try {
+            $em->remove($fazenda);
+            $em->flush();
+            $this->addFlash(
+                'Sucesso',
+                'Exclusão feita com sucesso!'
+            );
+        }catch(Exception $e) {
+            $this->addFlash(
+                'Aviso',
+                'Não é possível excluir uma fazendo que tem gados!'
+            );
+        }
 
         return $this->redirectToRoute('index_fazenda');
     }

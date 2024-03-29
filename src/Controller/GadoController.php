@@ -32,6 +32,11 @@ class GadoController extends AbstractController {
         if($form->isSubmitted() && $form->isValid()){
             $em->persist($gado);
             $em->flush();
+            $this->addFlash(
+                'Sucesso',
+                'Salvo com sucesso!'
+            );
+            return $this->redirectToRoute('index_gado');
         }
 
         $data['titulo'] = 'Adicionar novo gado';
@@ -49,6 +54,11 @@ class GadoController extends AbstractController {
 
         if($form->isSubmitted() && $form->isValid()){
             $em->flush();
+            $this->addFlash(
+                'Sucesso',
+                'Alterações salvas com sucesso!'
+            );
+            return $this->redirectToRoute('index_gado');
         }
 
         $data['titulo'] = 'Editar gado';
@@ -64,6 +74,10 @@ class GadoController extends AbstractController {
 
         $em->remove($gado);
         $em->flush();
+        $this->addFlash(
+            'Sucesso',
+            'Exclusão feita com sucesso!'
+        );
 
         return $this->redirectToRoute('index_gado');
     }

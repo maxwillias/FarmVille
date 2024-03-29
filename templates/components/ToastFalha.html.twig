@@ -1,0 +1,16 @@
+{% for label, messages in app.flashes(['Falha']) %}
+	{% for message in messages %}
+		<div class="toast-container" style="position: absolute; top: 10px; right: 10px;">
+			<div class="toast fade show bg-danger">
+				<div class="toast-header text-white bg-danger">
+					<strong class="me-auto">
+						{{ label }}</strong>
+					<button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+				</div>
+				<div class="toast-body text-white bg-danger">
+					{{ message }}
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+{% endfor %}

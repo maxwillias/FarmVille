@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\GadoRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: GadoRepository::class)]
 class Gado
@@ -18,15 +19,28 @@ class Gado
     private ?string $codigo = null;
 
     #[ORM\Column]
+    #[Assert\Positive(
+        message: 'Insira valor positivo para peso.'
+    )]
     private ?float $leite = null;
 
     #[ORM\Column]
+    #[Assert\Positive(
+        message: 'Insira valor positivo para peso.'
+    )]
     private ?float $racao = null;
 
     #[ORM\Column]
+    #[Assert\Positive(
+        message: 'Insira valor positivo para peso.'
+    )]
     private ?float $peso = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\LessThanOrEqual(
+        'today', 
+        message:'Essa data deve ser menor ou igual a data atual.'
+    )]
     private ?\DateTimeInterface $nascimento = null;
 
     #[ORM\ManyToOne(inversedBy: 'gados')]

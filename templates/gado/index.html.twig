@@ -24,7 +24,7 @@
             <td>{{ gado.leite }}</td>
             <td>{{ gado.racao }}</td>
             <td>{{ gado.peso }}</td>
-            <td>{{ gado.nascimento|date("m/d/Y") }}</td>
+            <td>{{ gado.nascimento|date("d/m/Y") }}</td>
             <td>{{ gado.fazenda.nome }}</td>
             <td>
                 <a href="{{ path('editar_gado', {id: gado.id}) }}" class="btn btn-primary">Editar</a>

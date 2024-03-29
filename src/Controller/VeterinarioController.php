@@ -32,6 +32,11 @@ class VeterinarioController extends AbstractController {
         if($form->isSubmitted() && $form->isValid()){
             $em->persist($veterinario);
             $em->flush();
+            $this->addFlash(
+                'Sucesso',
+                'Salvo com sucesso!'
+            );
+            return $this->redirectToRoute('index_veterinario');
         }
         
         $data['titulo'] = 'Adicionar novo Veterinário';
@@ -49,6 +54,11 @@ class VeterinarioController extends AbstractController {
 
         if($form->isSubmitted() && $form->isValid()){
             $em->flush();
+            $this->addFlash(
+                'Sucesso',
+                'Alterações salvas com sucesso!'
+            );
+            return $this->redirectToRoute('index_veterinario');
         }
         
         $data['titulo'] = 'Editar Veterinário';
@@ -64,6 +74,10 @@ class VeterinarioController extends AbstractController {
 
         $em->remove($veterinario);
         $em->flush();
+        $this->addFlash(
+            'Sucesso',
+            'Exclusão feita com sucesso!'
+        );
 
         return $this->redirectToRoute('index_veterinario');
     }
