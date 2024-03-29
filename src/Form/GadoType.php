@@ -20,7 +20,7 @@ class GadoType extends AbstractType {
             ->add('racao', NumberType::class, ['label' => 'Quantidade de alimento ingerida por semana - em quilos:'])
             ->add('peso', NumberType::class, ['label' => 'Peso do animal em quilos:'])
             ->add('nascimento', DateType::class, ['label' => 'Data de nascimento do animal:'])
-            ->add('fazenda_id', EntityType::class, [
+            ->add('fazenda', EntityType::class, [
                 'class' => Fazenda::class,
                 'choice_label' => 'nome',
                 'label' => 'Fazendo do gado:'

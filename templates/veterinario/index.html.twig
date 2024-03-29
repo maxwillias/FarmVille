@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ titulo }}{% endblock %}
+{% block body %}
+<h1>{{ titulo }}</h1>
+<a href={{ path('adicionar_veterinario') }} class="btn btn-primary mb-2">Adicionar</a>
+<table class="table">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Nome</td>
+            <td>CRMV</td>
+            <td>Ações</td>
+        </tr>
+    </thead>
+    <tbody>
+    {% for veterinario in veterinarios %}
+        <tr>
+            <td>{{ veterinario.id }}</td>
+            <td>{{ veterinario.nome }}</td>
+            <td>{{ veterinario.crmv }}</td>
+            <td>
+                <a href="{{ path('editar_veterinario', {id: veterinario.id}) }}" class="btn btn-primary">Editar</a>
+                <a href="{{ path('excluir_veterinario', {id: veterinario.id}) }}" class="btn btn-primary">Excluir</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
