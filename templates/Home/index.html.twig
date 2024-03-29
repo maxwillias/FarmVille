@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ titulo }}{% endblock %}
+{% block body %}
+<h1>{{ titulo }}</h1>
+<p>{{ mensagem }}</p>
+<table class="table">
+    <thead>
+        <tr>
+            <td><strong>Relatórios</strong></td>
+            <td><strong>Quantidade</strong></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Relatório de animais abatidos</td>
+            <td class="text-end">{{ abatidos }}</td>
+        </tr>
+        <tr>
+            <td>Relatório da quantidade total de leite produzido por semana (Litros)</td>
+            <td class="text-end">{{ leite }}</td>
+        </tr>    
+        <tr>
+            <td>Relatório da quantidade total de ração necessária por semana (Kilos)</td>
+            <td class="text-end">{{ racao }}</td>
+        </tr>    
+        <tr>    
+            <td>Relatório da quantidade total de animais que tenham até 1 ano de idade e que
+consumam mais de 500Kg de ração por semana </td>
+            <td class="text-end">{{ animaisRacao }}</td>
+        </tr>   
+    </tbody>
+</table>
+{% endblock %}
