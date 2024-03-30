@@ -81,7 +81,7 @@ class GadoController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $gad = $gadoRepository->findOneByCode($form->getData()->getCodigo());
+            $gad = $gadoRepository->findOneByCodeAndAbate($form->getData()->getCodigo());
 
             if ($gad != null && $gad->getId() != $gado->getId()) {
                 $this->addFlash(

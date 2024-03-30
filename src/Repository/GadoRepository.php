@@ -45,6 +45,15 @@ class GadoRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
+    public function findOneByCodeAndAbate($codigo): ?Gado
+    {
+        return $this->createQueryBuilder('g')
+            ->andWhere('g.codigo = :codigo and g.abate = 0')
+            ->setParameter('codigo', $codigo)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
     public function findAllAbate()
     {
         return $this->createQueryBuilder('g')
