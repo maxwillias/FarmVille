@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ titulo }}{% endblock %}
+{% block body %}
+<h1>{{ titulo }}</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Código</td>
+            <td>Leite(por litro)</td>
+            <td>Ração(por semana)</td>
+            <td>Peso(Kg)</td>
+            <td>Nascimento</td>
+            <td>Fazenda</td>
+            <td>Ações</td>
+        </tr>
+    </thead>
+    <tbody>
+    {% for gado in gados %}
+        <tr>
+            <td>{{ gado.id }}</td>
+            <td>{{ gado.codigo }}</td>
+            <td>{{ gado.leite }}</td>
+            <td>{{ gado.racao }}</td>
+            <td>{{ gado.peso }}</td>
+            <td>{{ gado.nascimento|date("d/m/Y") }}</td>
+            <td>{{ gado.fazenda.nome }}</td>
+            <td>
+                <a href="{{ path('abate_listagem', {id: gado.id}) }}" class="btn btn-danger">Abater</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -83,4 +83,27 @@ class GadoRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    public function findAllAnimaisFazenda($idFazenda)
+    {
+        return $this->createQueryBuilder('g')
+            ->select('count(g)')
+            ->andWhere('g.fazenda = :idFazenda')
+            ->setParameter('idFazenda', $idFazenda)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function findAllAnimaisAbate($ano) 
+    {
+        return $this->createQueryBuilder('g')
+            ->orWhere('g.nascimento <= :ano')
+            ->setParameter('ano', $ano)
+            ->orWhere('g.leite < 40')
+            ->orWhere('g.leite < 70 and g.racao/7 > 50')
+            ->orWhere('g.peso/15 > 18')
+            ->andWhere('g.abate = false')
+            ->getQuery()
+            ->getResult();
+    }
 }

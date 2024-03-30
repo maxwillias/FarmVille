@@ -36,13 +36,12 @@ class FazendaRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Fazenda
-    //    {
-    //        return $this->createQueryBuilder('f')
-    //            ->andWhere('f.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    public function findOneByName($nome): ?Fazenda
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.nome = :nome')
+            ->setParameter('nome', $nome)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

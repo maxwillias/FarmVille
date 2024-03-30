@@ -34,24 +34,36 @@ class GadoController extends AbstractController
         $existeCodigo = $gadoRepository->findOneByCode($form->getData()->getCodigo());
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($existeCodigo == null || $existeCodigo->isAbate()) {
-                $em->persist($gado);
-                $em->flush();
-                $this->addFlash(
-                    'Sucesso',
-                    'Salvo com sucesso!'
-                );
-                return $this->redirectToRoute('index_gado');
+
+            $fazenda = $form->getData()->getFazenda();
+            $quantidadeGado = $gadoRepository->findAllAnimaisFazenda($fazenda->getId());
+            if (($fazenda->getTamanho() * 18) > $quantidadeGado) {
+                $isLivre = true;
+            } else {
+                $isLivre = false;
             }
-            $this->addFlash(
-                'Aviso',
-                'Existe um gado vivo com esse código!'
-            );
-        } elseif ($existeCodigo != null && $existeCodigo->isAbate() == false) {
-            $this->addFlash(
-                'Aviso',
-                'Existe um gado vivo com esse código!'
-            );
+
+            if ($existeCodigo == null || $existeCodigo->isAbate()) {
+                if ($isLivre) {
+                    $em->persist($gado);
+                    $em->flush();
+                    $this->addFlash(
+                        'Sucesso',
+                        'Salvo com sucesso!'
+                    );
+                    return $this->redirectToRoute('index_gado');
+                } else {
+                    $this->addFlash(
+                        'Aviso',
+                        'A fazenda já tem o máximo de gados por hectar!'
+                    );
+                }
+            } elseif ($existeCodigo != null && $existeCodigo->isAbate() == false) {
+                $this->addFlash(
+                    'Aviso',
+                    'Existe um gado vivo com esse código!'
+                );
+            }
         }
 
         $data['titulo'] = 'Adicionar novo gado';
