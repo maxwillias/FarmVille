@@ -44,4 +44,11 @@ class FazendaRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    public function findTodos()
+    {
+        return $this->createQueryBuilder('f')
+            ->select('f')
+            ->getQuery();
+    }
 }

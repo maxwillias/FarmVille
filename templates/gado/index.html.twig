@@ -6,15 +6,15 @@
 <table class="table">
     <thead>
         <tr>
-            <td>#</td>
-            <td>Código</td>
-            <td>Leite(por litro)</td>
-            <td>Ração(por semana)</td>
-            <td>Peso(Kg)</td>
-            <td>Nascimento</td>
-            <td>Fazenda</td>
-            <td>Abate</td>
-            <td>Ações</td>
+            <th>{{ knp_pagination_sortable(gados, '#', 'g.id') }}</th>
+            <th>{{ knp_pagination_sortable(gados, 'Código', 'g.codigo') }}</th>
+            <th>{{ knp_pagination_sortable(gados, 'Leite(por litro)', 'g.leite') }}</th>
+            <th>{{ knp_pagination_sortable(gados, 'Ração(por semana)', 'g.racao') }}</th>
+            <th>{{ knp_pagination_sortable(gados, 'Peso(Kg)', 'g.peso') }}</th>
+            <th>{{ knp_pagination_sortable(gados, 'Nascimento', 'g.nascimento') }}</th>
+            <th>Fazenda</th>
+            <th>{{ knp_pagination_sortable(gados, 'Abate', 'g.abate') }}</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -50,4 +50,7 @@
     {% endfor %}
     </tbody>
 </table>
+<div class="container-fluid d-flex justify-content-center">
+    	{{ knp_pagination_render(gados) }}
+	</div>
 {% endblock %}

@@ -7,6 +7,7 @@ use App\Form\FazendaType;
 use App\Repository\FazendaRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,10 +17,16 @@ class FazendaController extends AbstractController
 {
 
     #[Route('/fazenda', name: 'index_fazenda')]
-    public function index(FazendaRepository $fazendaRepository): Response
+    public function index(Request $request, PaginatorInterface $paginator, FazendaRepository $fazendaRepository): Response
     {
 
-        $data['fazendas'] = $fazendaRepository->findAll();
+        $pagination = $paginator->paginate(
+            $fazendaRepository->findTodos(), 
+            $request->query->getInt('page', 1), 
+            2
+        );
+
+        $data['fazendas'] = $pagination;
         $data['titulo'] = 'Gerenciar Fazendas';
 
         return $this->render('fazenda/index.html.twig', $data);

@@ -6,12 +6,12 @@
 <table class="table">
     <thead>
         <tr>
-            <td>#</td>
-            <td>Nome</td>
-            <td>Tamanho(HA)</td>
-            <td>Resposável</td> 
-            <td>Veterinários</td>
-            <td>Ações</td>
+            <th>{{ knp_pagination_sortable(fazendas, '#', 'f.id') }}</th>
+            <th>{{ knp_pagination_sortable(fazendas, 'Nome', 'f.nome') }}</th>
+            <th>{{ knp_pagination_sortable(fazendas, 'Tamanho(HA)', 'f.tamanho') }}</th>
+            <th>{{ knp_pagination_sortable(fazendas, 'Resposável', 'f.responsavel') }}</th>
+            <th>Veterinários</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -35,4 +35,7 @@
     {% endfor %}
     </tbody>
 </table>
+<div class="container-fluid d-flex justify-content-center">
+    	{{ knp_pagination_render(fazendas) }}
+	</div>
 {% endblock %}

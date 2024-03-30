@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Veterinario;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -43,5 +44,12 @@ class VeterinarioRepository extends ServiceEntityRepository
             ->setParameter('crmv', $crmv)
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    public function findTodos()
+    {
+        return $this->createQueryBuilder('v')
+            ->select('v')
+            ->getQuery();
     }
 }

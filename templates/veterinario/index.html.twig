@@ -8,10 +8,10 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<td>#</td>
-				<td>Nome</td>
-				<td>CRMV</td>
-				<td>Ações</td>
+				<th>{{ knp_pagination_sortable(veterinarios, '#', 'v.id') }}</th>
+      			<th>{{ knp_pagination_sortable(veterinarios, 'Nome', 'v.nome') }}</th>
+				<th>{{ knp_pagination_sortable(veterinarios, 'CRMV', 'v.crmv') }}</th>
+				<th>Ações</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -28,4 +28,7 @@
 			{% endfor %}
 		</tbody>
 	</table>
+	<div class="container-fluid d-flex justify-content-center">
+    	{{ knp_pagination_render(veterinarios) }}
+	</div>
 {% endblock %}

@@ -6,6 +6,7 @@ use App\Entity\Veterinario;
 use App\Form\VeterinarioType;
 use App\Repository\VeterinarioRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,10 +18,17 @@ class VeterinarioController extends AbstractController
 {
 
     #[Route('/veterinario', name: 'index_veterinario')]
-    public function index(VeterinarioRepository $veterinarioRepository): Response
+    public function index(Request $request, VeterinarioRepository $veterinarioRepository, PaginatorInterface $paginator): Response
     {
+        
 
-        $data['veterinarios'] = $veterinarioRepository->findAll();
+        $pagination = $paginator->paginate(
+            $veterinarioRepository->findTodos(), 
+            $request->query->getInt('page', 1), 
+            2
+        );
+        
+        $data['veterinarios'] = $pagination;
         $data['titulo'] = 'Gerenciar Veterinários';
 
         return $this->render('veterinario/index.html.twig', $data);
