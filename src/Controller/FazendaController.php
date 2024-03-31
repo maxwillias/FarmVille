@@ -23,7 +23,7 @@ class FazendaController extends AbstractController
         $pagination = $paginator->paginate(
             $fazendaRepository->findTodos(), 
             $request->query->getInt('page', 1), 
-            2
+            10
         );
 
         $data['fazendas'] = $pagination;

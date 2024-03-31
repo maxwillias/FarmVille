@@ -22,7 +22,7 @@ class GadoController extends AbstractController
         $pagination = $paginator->paginate(
             $gadoRepository->findTodos(), 
             $request->query->getInt('page', 1), 
-            2
+            10
         );
 
         $data['gados'] = $pagination;

@@ -21,7 +21,7 @@ class ListagemController extends AbstractController {
         $pagination = $paginator->paginate(
             $gadoRepository->findAllAnimaisAbate($ano), 
             $request->query->getInt('page', 1), 
-            2
+            10
         );
 
         $data['gados'] = $pagination;

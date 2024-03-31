@@ -25,7 +25,7 @@ class VeterinarioController extends AbstractController
         $pagination = $paginator->paginate(
             $veterinarioRepository->findTodos(), 
             $request->query->getInt('page', 1), 
-            2
+            10
         );
         
         $data['veterinarios'] = $pagination;
