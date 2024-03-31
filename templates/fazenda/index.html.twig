@@ -2,7 +2,7 @@
 {% block title %}{{ titulo }}{% endblock %}
 {% block body %}
 <h1>{{ titulo }}</h1>
-<a href={{ path('adicionar_fazenda') }} class="btn btn-primary mb-2">Adicionar</a>
+<a href={{ path('adicionar_fazenda') }} class="btn btn-success mb-2">Adicionar</a>
 <table class="table">
     <thead>
         <tr>
@@ -29,7 +29,7 @@
             </td>
             <td>
                 <a href="{{ path('editar_fazenda', {id: fazenda.id}) }}" class="btn btn-primary">Editar</a>
-                <a href="{{ path('excluir_fazenda', {id: fazenda.id}) }}" class="btn btn-primary">Excluir</a>
+                <a href="{{ path('excluir_fazenda', {id: fazenda.id}) }}" class="btn btn-danger">Excluir</a>
             </td>
         </tr>
     {% endfor %}

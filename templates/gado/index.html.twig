@@ -2,7 +2,7 @@
 {% block title %}{{ titulo }}{% endblock %}
 {% block body %}
 <h1>{{ titulo }}</h1>
-<a href={{ path('adicionar_gado') }} class="btn btn-primary mb-2">Adicionar</a>
+<a href={{ path('adicionar_gado') }} class="btn btn-success mb-2">Adicionar</a>
 <table class="table">
     <thead>
         <tr>
@@ -44,7 +44,7 @@
                 {% if gado.abate == true %}
                     <a class="btn btn-secondary">Editar</a>    
                 {% endif %}
-                <a href="{{ path('excluir_gado', {id: gado.id}) }}" class="btn btn-primary">Excluir</a>
+                <a href="{{ path('excluir_gado', {id: gado.id}) }}" class="btn btn-danger">Excluir</a>
             </td>
         </tr>
     {% endfor %}
