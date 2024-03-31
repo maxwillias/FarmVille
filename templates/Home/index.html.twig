@@ -1,33 +1,51 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{ titulo }}{% endblock %}
 {% block body %}
-<h1>{{ titulo }}</h1>
-<p>{{ mensagem }}</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Relatórios</th>
-            <th>Quantidade</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Relatório de animais abatidos</td>
-            <td class="text-end">{{ abatidos }}</td>
-        </tr>
-        <tr>
-            <td>Relatório da quantidade total de leite produzido por semana (Litros)</td>
-            <td class="text-end">{{ leite }}</td>
-        </tr>    
-        <tr>
-            <td>Relatório da quantidade total de ração necessária por semana (Kilos)</td>
-            <td class="text-end">{{ racao }}</td>
-        </tr>    
-        <tr>    
-            <td>Relatório da quantidade total de animais que tenham até 1 ano de idade e que
-consumam mais de 500Kg de ração por semana </td>
-            <td class="text-end">{{ animaisRacao }}</td>
-        </tr>   
-    </tbody>
-</table>
+<h1 class="text-center">{{ titulo }}</h1>
+<p class="text-center">{{ mensagem }}</p>
+<hr />
+
+<!-- Novo Relatório -->
+<div class="container">
+  <div class="row">
+  <h3 class="text-center">Relatórios</h3>
+    <!-- Card 1 -->
+    <div class="col-md-6">
+      <div class="card text-bg-danger mb-3 " >
+        <div class="card-body">
+          <h5 class="card-title text-center">Quantidade de animais abatidos.</h5>
+          <h2 class="card-text text-center">{{ abatidos }}</h2>
+        </div>
+      </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="col-md-6">
+      <div class="card text-bg-primary mb-3">
+        <div class="card-body">
+          <h5 class="card-title text-center">Quantidade de leite produzido por semana (Litros).</h5>
+          <h2 class="card-text text-center">{{ leite }}</h2>
+        </div>
+      </div>
+    </div>
+    <!-- Card 3 -->
+    <div class="col-md-6">
+      <div class="card text-bg-warning mb-3">
+        <div class="card-body">
+          <h5 class="card-title text-center">Quantidade total de ração necessária por semana (Kilos).</h5>
+          <h2 class="card-text text-center">{{ racao }}</h2>
+        </div>
+      </div>
+    </div>
+    <!-- Card 4 -->
+    <div class="col-md-6">
+      <div class="card text-bg-success mb-3">
+        <div class="card-body">
+          <h5 class="card-title text-center">Quantidade de animais com até 1 ano de idade que consumam mais de 500Kg de ração por semana.</h5>
+          <h2 class="card-text text-center">{{ animaisRacao }}</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
